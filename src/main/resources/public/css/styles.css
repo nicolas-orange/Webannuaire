@@ -7,7 +7,7 @@ color: red;
 
   /* unvisited link */
       a:link {
-        color: #ccc;
+        color: #000ccc;
       }
       /* visited link */
       a:visited {
