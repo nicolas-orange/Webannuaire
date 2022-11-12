@@ -1,30 +1,31 @@
 package fr.imt.webannuaire.data;
 
+import org.springframework.stereotype.Component;
+
+// import org.springframework.boot.autoconfigure.domain.EntityScan;
+//@EntityScan
+
+@Component
 public class Person {
-private static int numerotation=0;
+private static int numerotation=1;
 private int id;
-private String name;
-private String surname;
-private String phone;
-private String city;
+private String nom;
+private String prenom;
+private String numtel;
+private String ville;
 
-public Person () {};
+public Person () {
+	this.id = numerotation;
+	numerotation++;
+};
 
-public Person(int id, String name, String surname, String phone, String city) {
-	super();
-	this.id = id;
-	this.name = name;
-	this.surname = surname;
-	this.phone = phone;
-	this.city = city;
-}
 public Person(String name, String surname, String phone, String city) {
 	this.id = numerotation;
 	numerotation++;
-	this.name = name;
-	this.surname = surname;
-	this.phone = phone;
-	this.city = city;
+	this.nom = name;
+	this.prenom = surname;
+	this.numtel = phone;
+	this.ville = city;
 }
 
 public int getId() {
@@ -34,29 +35,35 @@ public void setId(int id) {
 	this.id = id;
 }
 public String getName() {
-	return name;
+	return nom;
 }
 public void setName(String name) {
-	this.name = name;
+	this.nom = name;
 }
 public String getSurname() {
-	return surname;
+	return prenom;
 }
 public void setSurname(String surname) {
-	this.surname = surname;
+	this.prenom = surname;
 }
 public String getPhone() {
-	return phone;
+	return numtel;
 }
 public void setPhone(String phone) {
-	this.phone = phone;
+	this.numtel = phone;
 }
 public String getCity() {
-	return city;
+	return ville;
 }
 public void setCity(String city) {
-	this.city = city;
+	this.ville = city;
 }
+
+@Override
+public String toString() {
+	return "Person [id=" + id + ", nom=" + nom + ", prenom=" + prenom + ", numtel=" + numtel + ", ville=" + ville + "]";
+}
+
 
 
 

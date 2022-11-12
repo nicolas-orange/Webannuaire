@@ -20,46 +20,46 @@ import fr.imt.webannuaire.itf.DictionnaryItf;
 public class RestControl {
 	
 	@Autowired
-	DictionnaryItf di;
+	DictionnaryItf dict;
 	
 	@GetMapping("/annuaire")
 	public Collection<Person> getAll() {
-		return di.getAll();
+		return dict.getAll();
 	}
 	
 	@PostMapping("/annuaire")
 	public ResponseEntity<String> add(@RequestBody Person newPerson) {
-		if (di.getFromId(newPerson.getId()) != null){
+		if (dict.getFromName(newPerson.getName()) != null){
 			return ResponseEntity.status(HttpStatus.CONFLICT).body("Personne deja existante");
 		}
-		di.addPerson(newPerson);
+		dict.addPerson(newPerson);
 		return ResponseEntity.status(HttpStatus.CREATED).body("http://localhost:8080/rechercher/"+newPerson.getId());
 	}
 	
 	@GetMapping("/annuaire/{id}")
 	public ResponseEntity<?> getOne(@PathVariable int id) {
-		if (di.getFromId(id) == null){
+		if (dict.getFromId(id) == null){
 			return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Pas de personne trouvee avec cet ID");
 		}
-		return ResponseEntity.status(HttpStatus.OK).body(di.getFromId(id));
+		return ResponseEntity.status(HttpStatus.OK).body(dict.getFromId(id));
 	}
 	
 	@DeleteMapping("/annuaire/{id}")
 	public ResponseEntity<?> removeOne(@PathVariable int id) {
 		
-		if (di.getFromId(id) == null){
+		if (dict.getFromId(id) == null){
 			return new ResponseEntity<>("Pas de personne a supprimer avec cet ID", HttpStatus.NOT_FOUND);
 		}
-		di.deleteFromId(id);
+		dict.deleteFromId(id);
 		return ResponseEntity.status(HttpStatus.NO_CONTENT).build();	
 	}
 	
 	@PutMapping("/annuaire")
 	public ResponseEntity<?> remplace(@RequestBody Person updatedPerson) {		
-		if (di.getFromId(updatedPerson.getId()) == null){
+		if (dict.getFromId(updatedPerson.getId()) == null){
 			return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Pas de personne a mettre a jour avec cet ID");
 		}
-		di.addPerson(updatedPerson);
+		dict.addPerson(updatedPerson);
 		return ResponseEntity.status(HttpStatus.NO_CONTENT).build();		
 	}
 	

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>TP JavaScript</title>
+<link rel="stylesheet" href="css/styles.css" />
+<script src="js/tp.js"></script>
+</head>
+<body>
+	<div class="divTable">
+		<div class="headRow">
+			<div class="headCell">Id</div>
+			<div class="headCell">Nom</div>
+			<div class="headCell">Prenom</div>
+			<div class="headCell">Telephone</div>
+			<div class="headCell">Ville</div>
+		</div>
+	</div>
+	<th:block th:each="entry: ${entries}">
+		<div class="divRow">
+			<div class="divCell" data-title="Id">
+				<span th:text="${entry.getId()}"> Id </span>
+			</div>
+			<div class="divCell" data-title="Name">
+				<span th:text="${entry.getName()}"> Nom </span>
+			</div>
+			<div class="divCell" data-title="Name">
+				<span th:text="${entry.getSurname()}"> Prenom </span>
+			</div>
+			<div class="divCell" data-title="Phone">
+				<span th:text="${entry.getPhone()}"> Telephone </span>
+			</div>
+			<div class="divCell" data-title="City">
+				<span th:text="${entry.getCity()}"> Ville </span>
+			</div>
+		</div>
+	</th:block>
+
+
+</body>
+</html>
